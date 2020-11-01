@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+.word-grid {
+  display: grid;
+  width: fit-content;
+  grid-template-rows: repeat(auto,1fr);
+  gap: var(--gap);
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(var(--grid), 1fr);
+    gap: var(--gap);
+  }
+
+  &__item { 
+    cursor: pointer; 
+    &:active {
+      transform: translateY(.1rem);
+    }
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+    }
+    &:focus {
+      outline: none;
+      .letter {
+        text-decoration: underline;
+        text-underline-offset: .2rem;
+      }
+    }  
+  }
+}
+
