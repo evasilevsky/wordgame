@@ -13,6 +13,11 @@
   --gap: .35rem;
 }
 
+html {
+  // This defines what 1rem is
+  font-size: 125%; //1 rem = 20px; 20px/16px = 125%
+}
+
 body {
   color: var(--color-text);
   background-color: var(--color-base);

@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wordGame"
+    }
+  },
+  "defaultProject": "wordGame",
+  "cli": {
+    "analytics": false
+  }
 }
