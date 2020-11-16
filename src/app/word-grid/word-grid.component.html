@@ -1,4 +1,4 @@
-<article (click)="selectItem($event)" (keyup)="selectItem($event)" (keyup)="handleKeyFocus($event)" aria-role="grid"
+<!-- <article (click)="selectItem($event)" (keyup)="selectItem($event)" (keyup)="handleKeyFocus($event)" aria-role="grid"
 	class="word-grid" aria-label="game board" [attr.data-grid]="gridSize">
 	<div class="word-grid__row" [style.--grid]="gridSize" aria-role="row" *ngFor="let row of gridData; let i = index"
 		[attr.data-index]="i">
@@ -7,4 +7,9 @@
 			<span class="letter">{{letter}}</span>
 		</div>
 	</div>
-</article>
+</article> -->
+<div class="grid__row" *ngFor="let row of gameGrid">
+  <div class="grid__tile" *ngFor="let tile of row">
+    <span class="grid__tile--content">{{tile.letter}}</span>
+  </div>
+</div>
