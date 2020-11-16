@@ -16,5 +16,7 @@ export class TileComponent implements OnInit {
 
 	ngOnInit(): void {
 	}
-
+	toggle() {
+		this.tile.isSelected = !this.tile.isSelected;
+	}
 }
