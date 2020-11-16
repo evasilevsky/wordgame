@@ -1,1 +1,1 @@
-<p>tile works!</p>
+<div class="grid__tile--content" [class.grid__tile--content-selected]="tile.isSelected === true" (click)="toggleTile($event)">{{tile.letter}}</div>
