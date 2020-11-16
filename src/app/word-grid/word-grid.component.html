@@ -9,7 +9,7 @@
 	</div>
 </article> -->
 <div class="grid__row" *ngFor="let row of gameGrid">
-  <div class="grid__tile" *ngFor="let tile of row">
-    <span class="grid__tile--content">{{tile.letter}}</span>
-  </div>
+	<app-tile [tile]="tile" class="grid__tile" *ngFor="let tile of row">
+		<span>{{tile.letter}}</span>
+	</app-tile>
 </div>
