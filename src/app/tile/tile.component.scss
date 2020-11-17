@@ -38,4 +38,5 @@
 
 .grid__tile--selected .tile__content{
   color: var(--color-primary); 
+  box-shadow: var(--box-shadow-pressed);
 }
