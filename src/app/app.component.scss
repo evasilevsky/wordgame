@@ -1,3 +1,5 @@
+@import '../app/tile/tile.component.scss';
+
 .app-header {
   width: 90vw;
   margin: 3rem auto;
@@ -25,17 +27,7 @@ grid-template-rows: repeat(2, min-content);
   }
 
   &__tile{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    width: 3rem;
-    height: 3rem;
-    padding: 0.5rem;
-    margin: 0.1rem;
-
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: var(--border-radius); 
-    box-shadow: var(--box-shadow);
+    @extend .grid__tile;
   }
 
   &__letter{
