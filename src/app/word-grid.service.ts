@@ -22,6 +22,7 @@ export class WordGridService implements IBoardGenerator {
     this.gridSize = gridSize;
     this.generateGrid();
     this.placeWord();
+    this.fillEmptySpots();
     return this.grid;
   }
   
@@ -144,6 +145,24 @@ export class WordGridService implements IBoardGenerator {
       };
       this.grid[next.indexRow][next.indexColumn] = tile;
     }
+    
   };
   
+  fillEmptySpots(): void {
+    for(let row of this.grid) {
+      let i:number = 0;
+      while(i < this.gridWidth) {
+        if(row[i].letter === "_") {
+          row[i].letter = this.pickRandomLetter();
+        }
+        i++
+      }
+    }
+  };
+
+  pickRandomLetter(): string {
+    const letterIndex = Math.floor(Math.random() * this.alphabet.length);
+    const randomLetter = this.alphabet[letterIndex];
+    return randomLetter;
+  }
 };
