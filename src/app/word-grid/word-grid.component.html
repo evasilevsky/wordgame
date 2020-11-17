@@ -10,6 +10,6 @@
 </article> -->
 <div class="grid__row" *ngFor="let row of gameGrid">
   <div *ngFor="let tile of row">
-   <app-tile class="grid__tile" [tile]="tile"></app-tile>
+   <app-tile [tile]="tile"></app-tile>
   </div>
 </div>

@@ -1,1 +1,5 @@
-<div class="grid__tile--content" [class.grid__tile--content-selected]="tile.isSelected === true" (click)="toggleTile($event)">{{tile.letter}}</div>
+<div class="grid__tile" [ngClass]="{'grid__tile--selected': tile.isSelected}" (click)="toggleTile($event)">
+  <span class="tile__content">
+    {{tile.letter}}
+  </span>
+</div>
