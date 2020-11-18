@@ -1,1 +1,4 @@
-<div [class.selected]="tile.isSelected" (click)="toggle()" class="tile--content">{{tile?.letter}}</div>
+<div class="tile" [class.selected]="tile.isSelected" (click)="toggle()"  tabindex="0">
+  <span class="letter">{{tile?.letter}}</span>
+</div>
+  

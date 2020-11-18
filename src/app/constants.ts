@@ -1,4 +1,5 @@
 // Const declaration
+export const APP_NAME: string = 'word game';
 export const GRID_WIDTH: number = 20;
 export const GRID_HEIGHT: number = 20;
 export const GRID_SIZE: number = 20;

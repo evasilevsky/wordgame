@@ -10,9 +10,9 @@ import { IBoardGenerator, ITile } from './word-grid.models'
 })
 
 export class WordGridComponent implements OnInit {
-	gameGrid: ITile[][];
- 
-
+  gameGrid: ITile[][];
+  readonly gridSize = GRID_SIZE;
+  
   constructor(private BoardService: BoardService) {
   }
 
