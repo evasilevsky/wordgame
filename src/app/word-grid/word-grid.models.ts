@@ -12,4 +12,5 @@ export interface ILocation {
   indexRow: number;
   indexColumn: number;
   direction: string;
+  overlap: number;
 }

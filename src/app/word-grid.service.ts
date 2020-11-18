@@ -57,10 +57,10 @@ export class WordGridService implements IBoardGenerator {
     }
   }
   
-  pickRandomWord(): string {
-    let length = this.words.length;
-    let randomWord = this.words.splice((Math.floor(Math.random() * length)), 1);
-    return randomWord[0];
+  getWord(): string {
+    let sortedWords = this.words.sort( (a,b) => b.length - a.length  );
+    sortedWords = sortedWords.splice(0,1);
+    return sortedWords[0];
   }
 
   // Find all available locations to place the word in every direction.
@@ -68,6 +68,7 @@ export class WordGridService implements IBoardGenerator {
 
     const locations: ILocation[] = [];
     const wordLength = word.length;
+    let biggestOverlap = 0;
 
     for( let j = 0; j < this.directions.length; j++){
 
@@ -76,16 +77,19 @@ export class WordGridService implements IBoardGenerator {
       const nextTile = this.nextTile[direction];
       let indexColumn = 0;
       let indexRow = 0; 
+      
 
       while( indexRow < this.gridHeight) {
         // check if the word fits in the space available at all.
         if(checkDirection(this.gridWidth, this.gridHeight, indexColumn, indexRow, wordLength )) {
           // If it fits, check the next tile for the length of the word to make sure words don't overlap.
-          let isOverlap = this.checkForOverlap(word, indexColumn, indexRow, nextTile);
+          let overlap = this.checkForOverlap(word, indexColumn, indexRow, nextTile);
 
-          if(isOverlap === 0) {
-            locations.push({ indexColumn, indexRow, direction});
+          if(overlap >= biggestOverlap || overlap === 0) {
+            biggestOverlap = overlap;
+            locations.push({ indexColumn, indexRow, direction, overlap: biggestOverlap});
           }
+
           indexColumn++;
           if (indexColumn >= this.gridWidth) {
             indexColumn = 0;
@@ -99,7 +103,7 @@ export class WordGridService implements IBoardGenerator {
         }
       }
     }
-    return locations;
+    return this.optimizeOverlaps(locations, biggestOverlap);
   };
 
   checkForOverlap( word, indexColumn, indexRow, getNextTile ): number {
@@ -109,19 +113,29 @@ export class WordGridService implements IBoardGenerator {
       let nextTile = getNextTile( indexColumn, indexRow, k );
       let tile = this.grid[nextTile.indexRow][nextTile.indexColumn];
 
-      if(tile.letter === '_') {
-        overlap = overlap;
-      } else {
-        overlap--;
+      if (tile.letter === word[k]) {
+        overlap++;
+      }  else if (tile.letter !== '_') {
+        return -1;
       }
     }
     return overlap;
   }
 
+  optimizeOverlaps( locations, biggestOverlap ): ILocation[] {
+    let overlapLocations: ILocation[] = []
+    for(let [i ,location] of locations.entries()){
+      if (location.overlap >= biggestOverlap) {
+        overlapLocations.push(location);
+      }
+    }
+    return overlapLocations;
+  }
+
   placeWord(): ITile[][] {
     while(this.words.length >= 1) {
       // get random word to place in the grid.
-      const word: string = this.pickRandomWord();
+      const word: string = this.getWord();
       // get all available locations for placing the word.
       const locations = this.getAvailableLocations(word);
       // select available locations at random.
