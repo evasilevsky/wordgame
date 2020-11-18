@@ -18,5 +18,6 @@ export class TileComponent implements OnInit {
 	}
 	toggle() {
 		this.tile.isSelected = !this.tile.isSelected;
+		this.onTileSelected.emit(this.tile);
 	}
 }

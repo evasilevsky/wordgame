@@ -9,7 +9,7 @@ export class WordGridService implements IBoardGenerator {
   grid: ITile[][] = []
   
   alphabet: string = ALPHABET
-  words: string[] = WORD_LIST 
+  words: string[] = WORD_LIST
   gridWidth: number = GRID_WIDTH
   gridHeight: number = GRID_HEIGHT
   gridSize: number = GRID_SIZE
@@ -155,7 +155,8 @@ export class WordGridService implements IBoardGenerator {
         indexRow: next.indexRow,
         indexColumn: next.indexColumn,
         isWord: true, 
-        isSelected: false
+        isSelected: false,
+        isStartOrEnd: i === 0 ? 'start' : i === length - 1 ? 'end' : 'middle'
       };
       this.grid[next.indexRow][next.indexColumn] = tile;
     }

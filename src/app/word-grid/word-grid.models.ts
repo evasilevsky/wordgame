@@ -7,6 +7,7 @@ export interface ITile {
   indexColumn?: number;
   isSelected?: boolean;
   isWord?: boolean;
+  isStartOrEnd?: string;
 }
 export interface ILocation {
   indexRow: number;
