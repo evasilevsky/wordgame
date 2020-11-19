@@ -17,7 +17,7 @@ export class TileComponent implements OnInit {
 	ngOnInit(): void {
 	}
 	toggle() {
-		if (this.tile.isSelected && typeof this.tile.letterPosition !== 'number') {
+		if (this.tile.isSelected && typeof this.tile.letterPosition !== 'number' && this.tile.isWord) {
 			this.tile.isSelected = this.tile.isSelected;
 		} else {
 			this.tile.isSelected = !this.tile.isSelected;
