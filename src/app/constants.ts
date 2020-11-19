@@ -22,19 +22,5 @@ export const WORD_LIST: string[] = [
   'Squirtle',
   'Charmander'
 ];
-export const WORD_LIST_2: string[] = [
-  'Ditto',
-  'Arbok',
-  'Eevee',
-  'Entei',
-  'Gloom',
-  'Ekans',
-  'Pichu',
-  'Aipom',
-  'Duduo',
-  'Pikachu',
-  'bulbasaur',
-  'Squirtle',
-  'Charmander'
-];
+
 export const ALPHABET: string = 'abcdefghijklmnoprstuvwy'

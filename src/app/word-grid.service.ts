@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WORD_LIST, GRID_WIDTH, GRID_HEIGHT, DIRECTIONS, ALPHABET, GRID_SIZE } from './constants';
+import { TileComponent } from './tile/tile.component';
 import { ITile , IBoardGenerator, ILocation  } from './word-grid/word-grid.models';
 
 @Injectable({
@@ -15,6 +16,8 @@ export class WordGridService implements IBoardGenerator {
   gridSize: number = GRID_SIZE
   directions: string[] = DIRECTIONS
   
+  wordCounter: number = 0
+
   constructor() { }
   
   generateBoard(gridSize: number, wordList: string[]): ITile[][] {
@@ -52,15 +55,16 @@ export class WordGridService implements IBoardGenerator {
     for(let i=0; i < this.gridHeight; i++) {
       this.grid.push([]);
       for(let j=0; j< this.gridWidth; j++) {
-        this.grid[i].push({letter:'_'});
+        this.grid[i].push({letter:'_', isWord: false});
       }
     }
   }
   
   getWord(): string {
     let sortedWords = this.words.sort( (a,b) => b.length - a.length  );
-    sortedWords = sortedWords.splice(0,1);
-    return sortedWords[0];
+    let getOneWord = sortedWords[this.wordCounter];
+    this.wordCounter++;
+    return getOneWord;
   }
 
   // Find all available locations to place the word in every direction.
@@ -133,15 +137,18 @@ export class WordGridService implements IBoardGenerator {
   }
 
   placeWord(): ITile[][] {
-    while(this.words.length >= 1) {
-      // get random word to place in the grid.
+    let length = this.words.length;
+    while(length) {
+      
       const word: string = this.getWord();
-      // get all available locations for placing the word.
+      
       const locations = this.getAvailableLocations(word);
-      // select available locations at random.
+      
       const randomLocation: ILocation = locations[Math.floor(Math.random() * locations.length)];
-      // place word in the selected location.
+      
       this.placeWordInGrid( word, randomLocation);
+
+      length--;
     }
     return this.grid;
   }
@@ -150,18 +157,37 @@ export class WordGridService implements IBoardGenerator {
     for (let i = 0, length = word.length; i < length; i++) {
       let next = this.nextTile[randomLocation.direction];
       next = next(randomLocation.indexColumn, randomLocation.indexRow, i);
-      let tile: ITile = {
+      let tile = this.buildTile(word, next, i);
+      this.grid[next.indexRow][next.indexColumn] = tile;
+    }
+    
+  };
+
+  buildTile(word, next, i): ITile {
+
+    if(this.grid[next.indexRow][next.indexColumn].letter === word[i]) {
+      let previousLetterPosition = this.grid[next.indexRow][next.indexColumn].letterPosition;
+      const tile: ITile = {
         letter: word[i],
         indexRow: next.indexRow,
         indexColumn: next.indexColumn,
         isWord: true, 
         isSelected: false,
-        isStartOrEnd: i === 0 ? 'start' : i === length - 1 ? 'end' : 'middle'
+        letterPosition: [previousLetterPosition, i]
       };
-      this.grid[next.indexRow][next.indexColumn] = tile;
+      return tile;
+    } else {
+      const tile: ITile = {
+        letter: word[i],
+        indexRow: next.indexRow,
+        indexColumn: next.indexColumn,
+        isWord: true, 
+        isSelected: false,
+        letterPosition: i
+      };
+      return tile;
     }
-    
-  };
+  }
   
   fillEmptySpots(): void {
     for(let row of this.grid) {
