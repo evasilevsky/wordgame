@@ -17,3 +17,9 @@ export interface ILocation {
   direction: string;
   overlap: number;
 }
+
+export interface IList {
+  word: string;
+  id?: string;
+  completed: boolean;
+}

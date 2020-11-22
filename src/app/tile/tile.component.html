@@ -1,5 +1,5 @@
-<div class="grid__tile" [ngClass]="{'grid__tile--selected': tile.isSelected}" (click)="toggle()">
-  <span class="tile__content" [ngClass]="{'letter-random': !tile.isWord}">
+<div class="grid__tile" [class.grid__tile--selected]="tile.isSelected" (click)="toggle()">
+  <span class="tile__content">
     {{tile.letter}}
   </span>
 </div>
