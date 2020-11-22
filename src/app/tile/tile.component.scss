@@ -1,18 +1,21 @@
-.grid__tile {
-  
-  &--content {
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  text-transform: uppercase;
-  font-family: sans-serif;
-  font-size: 3rem;
-  color: var(--color-text);
+.tile--content {
+	align-self: center;
+	text-transform: uppercase;
+	font-family: sans-serif;
+	font-size: 2.5rem;
+	text-align: center;
+}
 
-  &-selected {
-    color: var(--color-primary);
-  }
-  }
+:host:hover {
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow-dark);
+	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.selected {
+  box-shadow: var(--box-shadow-pressed);
+  color: var(--color-primary);
+}
+.word {
+  color: red;
 }
