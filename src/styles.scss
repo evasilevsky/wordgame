@@ -22,3 +22,9 @@ body {
   color: var(--color-text);
   background-color: var(--color-base);
 }
+
+
+.selected {
+  box-shadow: var(--box-shadow-pressed);
+  color: var(--color-primary);
+}

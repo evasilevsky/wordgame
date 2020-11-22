@@ -13,26 +13,32 @@
     align-content: center;
     width: 3rem;
     height: 3rem;
-    padding: 1rem 1rem 0.7rem 1rem;
+    padding: 1rem 1rem 0.3rem 1rem;
     margin: 0.1rem;
 
     border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius); 
     box-shadow: var(--box-shadow);
     transition: 0.10s all;
+
+    &:hover {
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-dark);
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);     
+    }
   }
 }
 
 // .tile {
 //   position: relative;
 //   display: flex;
-
+  
 //   padding: .75rem;
 //   font-size: 1.8rem;
 //   text-align: center;
 
 //   border: 1px solid rgba(0, 0, 0, 0.05);
-//   border-radius: var(--border-radius);
+//   border-radius: var(--border-radius); 
 //   box-shadow: var(--box-shadow);
 //   transition: 0.10s all;
 //    // for centering letter
