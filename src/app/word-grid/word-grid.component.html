@@ -8,8 +8,8 @@
 		</div>
 	</div>
 </article> -->
-<div class="grid__row" *ngFor="let row of gameGrid">
-  <div *ngFor="let tile of row">
-   <app-tile class="grid__tile" [tile]="tile"></app-tile>
-  </div>
+<div  class="grid__row" *ngFor="let row of gameGrid">
+	<app-tile [tile]="tile" (notifySelection)="selectedChanged($event)" class="grid__tile" *ngFor="let tile of row">
+	  <span>{{tile.letter}}</span>
+	</app-tile>
 </div>

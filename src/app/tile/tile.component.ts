@@ -6,18 +6,22 @@ import { ITile } from '../word-grid/word-grid.models';
 	templateUrl: './tile.component.html',
 	styleUrls: ['./tile.component.scss']
 })
-export class TileComponent implements OnInit {
+export class TileComponent implements OnInit {	
+	
 	@Input()
 	tile: ITile;
 
 	@Output()
 	onTileSelected = new EventEmitter<ITile>();
+	@Output() notifySelection = new EventEmitter<ITile>();
+
 	constructor() { }
 
 	ngOnInit(): void {
 	}
-
-	toggleTile($event): void {
-    this.tile.isSelected = !this.tile.isSelected;
-  }
+	
+	isSelectedChange() {
+		this.tile.isSelected = !this.tile.isSelected;
+		this.notifySelection.emit(this.tile);
+	}
 }
