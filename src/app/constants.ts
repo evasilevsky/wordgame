@@ -1,3 +1,5 @@
+import { IList } from './word-grid/word-grid.models';
+
 // Const declaration
 export const GRID_WIDTH: number = 20;
 export const GRID_HEIGHT: number = 20;
@@ -7,7 +9,7 @@ export const DIRECTIONS: string[] = [
   'vertical',
   'diagonal'
 ]
-export const WORD_LIST: string[] = [
+export const WORD_LIST: IList[] = [
   {word:'ditto', id: '132', completed:false},
   {word:'arbok', id: '24', completed:false},
   {word:'eevee', id: '133', completed:false},

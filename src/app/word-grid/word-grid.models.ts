@@ -1,5 +1,5 @@
 export interface IBoardGenerator {
-	generateBoard(gridSize: number, wordList: string[]): ITile[][];
+	generateBoard(gridSize: number, wordList: IList[]): ITile[][];
 }
 export interface ITile {
 	letter: string;

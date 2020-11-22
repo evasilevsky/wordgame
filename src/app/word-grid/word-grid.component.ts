@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GRID_SIZE, WORD_LIST} from '../constants';
 import { BoardService } from '../board.service';
-import { IBoardGenerator, ITile } from './word-grid.models'
+import { IBoardGenerator, IList, ITile } from './word-grid.models'
 
 @Component({
 	selector: 'app-word-grid',
@@ -12,7 +12,7 @@ import { IBoardGenerator, ITile } from './word-grid.models'
 export class WordGridComponent implements OnInit {
 	gameGrid: ITile[][];
   word: string[] = [];
-  wordList = WORD_LIST;
+  wordList: IList[] = WORD_LIST;
 
   constructor(private BoardService: BoardService) {
   }
@@ -32,9 +32,9 @@ export class WordGridComponent implements OnInit {
         this.word[$event.letterPosition] = $event.letter;
       }
       const wordToCheck: string = this.word.join('');
-      for(let [i,word] of this.wordList.entries()) {
-        if(wordToCheck === word ) {
-          alert(`You caught a wild ${word}`);
+      for(let [i,iWord] of this.wordList.entries()) {
+        if(wordToCheck === iWord.word ) {
+          alert(`You caught a wild ${iWord.word}`);
           this.word = []
         }
       }

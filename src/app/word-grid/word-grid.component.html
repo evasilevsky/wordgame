@@ -9,7 +9,5 @@
 	</div>
 </article> -->
 <div class="grid__row" *ngFor="let row of gameGrid">
-  <div *ngFor="let tile of row">
-   <app-tile (onTileSelected)="checkForWord($event)" [tile]="tile"></app-tile>
-  </div>
+  <app-tile *ngFor="let tile of row" (onTileSelected)="checkForWord($event)" [tile]="tile"></app-tile>
 </div>

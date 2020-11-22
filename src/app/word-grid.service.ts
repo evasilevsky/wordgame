@@ -20,7 +20,7 @@ export class WordGridService implements IBoardGenerator {
 
   constructor() { }
   
-  generateBoard(gridSize: number, wordList: string[]): ITile[][] {
+  generateBoard(gridSize: number, wordList: IList[]): ITile[][] {
     this.words = wordList;
     this.gridSize = gridSize;
     this.generateGrid();
@@ -163,7 +163,7 @@ export class WordGridService implements IBoardGenerator {
     for (let i = 0, length = iWord.word.length; i < length; i++) {
       let next = this.nextTile[randomLocation.direction];
       next = next(randomLocation.indexColumn, randomLocation.indexRow, i);
-      let tile = this.buildTile(iWord.word, next, i);
+      let tile = this.buildTile(iWord, next, i);
       this.grid[next.indexRow][next.indexColumn] = tile;
     }
     
