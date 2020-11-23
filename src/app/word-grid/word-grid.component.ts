@@ -18,8 +18,7 @@ export class WordGridComponent implements OnInit {
   ngAfterViewInit() { }
 
   selectedChanged(tile:ITile): void {
-    const isWordTile = tile.words.length > 0;
-    if (isWordTile) {
+    if (tile.isWord) {
       tile.words.forEach((word) => this.checkForFoundWords(word));
     }
   }
