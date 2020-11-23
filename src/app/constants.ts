@@ -1,7 +1,7 @@
 // Const declaration
 export const GRID_WIDTH: number = 20;
 export const GRID_HEIGHT: number = 20;
-export const GRID_SIZE: number = 12;
+export const GRID_SIZE: number = 3;
 
 export const DIRECTIONS: string[] = [
   'horizontal',
@@ -37,6 +37,8 @@ export const WORD_LIST: string[] = [
 ];
 
   export const WORD_LIST_TREES: string[] = [
+    "fir"
+    /*
     "arbutus",
     "birch",
     "pine",
@@ -52,6 +54,7 @@ export const WORD_LIST: string[] = [
     "beech",
     "basswood",
     "elm"
+    */
   ]
 
   export const ALPHABET: string = 'abcdefghijklmnoprstuvwy';
