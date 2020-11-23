@@ -61,6 +61,7 @@ export class LaurenGridService implements IBoardGenerator {
 	updateTile(tile: ITile,val: string,word: string): ITile {
 		tile.letter = this.formatLetter(val);
 		tile.words.push(word);
+		tile.isWord = true;
 		return tile;
 	}
 	createTile(rowI: number, colI: number): ITile {
@@ -69,9 +70,10 @@ export class LaurenGridService implements IBoardGenerator {
 			indexColumn: colI,
 			letter: this.getRandomLetter(),
 			isSelected: false,
-			isWord:false,
-			foundCount: 0,
 			words:[],
+			isWord:false,
+			isFound: false,
+			foundCount: 0,
 		}
 		return tile;
 	}
@@ -90,14 +92,10 @@ export class LaurenGridService implements IBoardGenerator {
 		}
 	}
 	getOpenSpots(board: ITile[][], word: string): ILocation[] {
-		const spots = [];
-	 	board.forEach((row,rowI) => {
-		 row.forEach((c,colI)=> {
-			let spot = this.createSpot(rowI,colI,word,board);
-			 if (spot) spots.push(spot);
-		 })
-	 })
-	 return spots;
+	 const grid = [...Array(board.length)]; 
+	 return grid.flatMap((r,row) => grid
+		 .map((c,col) => this.createSpot(row,col,word,board)))
+		 .filter(openSpot => openSpot);
 	}
 	createSpot(rowI: number, colI: number, word: string, board: ITile[][]): ILocation {
 		const direction = this.getRandomDirection(rowI,colI,word,board);
@@ -105,7 +103,7 @@ export class LaurenGridService implements IBoardGenerator {
 			return {
 				indexRow: rowI,
 				indexColumn: colI,
-				direction: direction,
+				direction: direction
 			}
 		}
 	}

@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../board.service';
 import { ITile } from './word-grid.models'
-import { TileComponent } from '../tile/tile.component';
-
 @Component({
 	selector: 'app-word-grid',
 	templateUrl: './word-grid.component.html',
@@ -11,7 +9,6 @@ import { TileComponent } from '../tile/tile.component';
 
 export class WordGridComponent implements OnInit {
   gameGrid: ITile[][];
-  @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
 
   constructor(private BoardService: BoardService) { }
 
@@ -20,41 +17,34 @@ export class WordGridComponent implements OnInit {
   } 
   ngAfterViewInit() { }
 
-  selectedChanged(eTile:ITile) {
-    const isWordTile = eTile.words.length > 0;
-    this.toggleTileSelected(eTile);
-    if (isWordTile && !eTile.isWord) {
-      eTile.words.forEach((word) => this.checkForFoundWords(word));
+  selectedChanged(tile:ITile): void {
+    const isWordTile = tile.words.length > 0;
+    if (isWordTile) {
+      tile.words.forEach((word) => this.checkForFoundWords(word));
     }
   }
-  toggleTileSelected(tile:ITile) {
-    if (!tile.isWord) {
-      tile.isSelected = !tile.isSelected;
-    }
-  }
-  checkForFoundWords(word:string) {
-    const relatedTiles = this.getRelatedTiles(word);
+  checkForFoundWords(word: string): void {
+    const relatedTiles = this.getWordTiles(word);
     const wordIsFound = relatedTiles.length === word.length;
     if (wordIsFound) {
-      this.updateRelatedTiles(relatedTiles);
+      this.updateWordTiles(relatedTiles);
     }
   }
-  getRelatedTiles(word:string) { 
-    return this.tiles.filter(child => child.tile.words
-      .some(currentWord => currentWord === word))
-      .filter(item => item.tile.isSelected === true);
+  getWordTiles(word: string): ITile[] {
+    return this.gameGrid.flatMap(row => row.filter(tile => this.isPartOfWord(tile,word))); 
   }
-  updateRelatedTiles(relatedTiles: TileComponent[]) {
-    relatedTiles.forEach((item,i)=> {
-      const tile = item.tile;
-      const allRelatedWordsFound = tile.foundCount === tile.words.length;
-      tile.isWord = true;
+  isPartOfWord(tile: ITile, word: string): boolean {
+    return tile.isWord && tile.isSelected && tile.words.some(w => w === word);
+  }
+  updateWordTiles(wordTiles): void {
+    wordTiles.forEach(tile => {
       tile.isSelected = true;
+      tile.isFound = true;
       tile.foundCount++;
-      if (allRelatedWordsFound) {
+      if (tile.foundCount === tile.words.length) {
         tile.isSelected = false;
       }
-    })
+    });
   }
 }
 
