@@ -17,9 +17,9 @@ export class WordGridService implements IBoardGenerator {
   
   constructor() { }
   
-  generateBoard(gridSize: number, wordList: string[]): ITile[][] {
+  generateBoard( wordList: string[]): ITile[][] {
     this.words = wordList;
-    this.gridSize = gridSize;
+    this.gridSize = GRID_SIZE;
     this.generateGrid();
     this.placeWord();
     return this.grid;

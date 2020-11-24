@@ -20,12 +20,12 @@ export class LaurenGridService implements IBoardGenerator {
 		wordList: WORD_LIST_TREES
 	}
 
-	generateBoard(): ITile[][] {
+	generateBoard(wordList: string[]): ITile[][] {
 		let unplacedWords;
 		let board;
 		do {
 			board = this.createBaseGrid(this.settings.gridSize);
-			unplacedWords = this.placeWordsOnBoard(this.settings.wordList, board);
+			unplacedWords = this.placeWordsOnBoard(wordList, board);
 			this.attempts++;
 		} while (unplacedWords.length > 0 && this.attempts < this.settings.maxAttempts);
 		return board;

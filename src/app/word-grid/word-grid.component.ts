@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BoardService } from '../board.service';
 import { ITile } from './word-grid.models'
 @Component({
@@ -8,12 +8,13 @@ import { ITile } from './word-grid.models'
 })
 
 export class WordGridComponent implements OnInit {
+  @Input() wordList;
   gameGrid: ITile[][];
 
   constructor(private BoardService: BoardService) { }
 
   ngOnInit(): void {
-    this.gameGrid = this.BoardService.generateBoard();
+    this.gameGrid = this.BoardService.generateBoard(this.wordList);
   } 
   ngAfterViewInit() { }
 
