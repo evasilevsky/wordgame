@@ -9,7 +9,6 @@
 	</div>
 </article> -->
 <div  class="grid__row" *ngFor="let row of gameGrid">
-	<app-tile [tile]="tile" (notifySelection)="selectedChanged($event)" class="grid__tile" *ngFor="let tile of row">
-	  <span>{{tile.letter}}</span>
+	<app-tile [tile]="tile" (notifySelection)="selectedChanged(tile)" [class.word]="tile.isWord" class="grid__tile word" *ngFor="let tile of row">
 	</app-tile>
 </div>

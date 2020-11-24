@@ -21,7 +21,9 @@ export class TileComponent implements OnInit {
 	}
 	
 	isSelectedChange() {
-		this.tile.isSelected = !this.tile.isSelected;
-		this.notifySelection.emit(this.tile);
+		if (!this.tile.isFound) {
+			this.tile.isSelected = !this.tile.isSelected;
+			this.notifySelection.emit(this.tile);
+    }	
 	}
 }

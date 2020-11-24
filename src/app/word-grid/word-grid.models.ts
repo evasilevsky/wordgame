@@ -8,7 +8,8 @@ export interface ITile {
   indexColumn?: number;
   isSelected?: boolean;
   isWord?: boolean;
-  foundCount?:number;
+  isFound?: boolean;
+  foundCount? :number;
 }
 
 export interface ILocation {
