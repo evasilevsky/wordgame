@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BoardService } from '../board.service';
-import { ITile } from './word-grid.models'
+import { ITile } from './word-grid.models';
+import { GRID_SIZE } from '../constants';
 @Component({
 	selector: 'app-word-grid',
 	templateUrl: './word-grid.component.html',
@@ -10,6 +11,7 @@ import { ITile } from './word-grid.models'
 export class WordGridComponent implements OnInit {
   @Input() wordList;
   gameGrid: ITile[][];
+  readonly gridSize = GRID_SIZE;
 
   constructor(private BoardService: BoardService) { }
 
