@@ -1,1 +1,9 @@
-<app-word-grid [wordList]=wordList></app-word-grid>
+<!-- select ul break into own component and put here-->
+<!--<app-word-list-selector [(wordLists)]></app-word-list-selector> -->
+<ul class="select-list">
+  <li (click)="wordListChange(item)" *ngFor="let item of wordLists">{{item.name}}</li>
+</ul>
+<app-word-grid [(wordList)]=wordList></app-word-grid>
+
+
+

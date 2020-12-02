@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { BoardService } from '../board.service';
 import { ITile } from './word-grid.models'
 @Component({
@@ -17,6 +17,13 @@ export class WordGridComponent implements OnInit {
     this.gameGrid = this.BoardService.generateBoard(this.wordList);
   } 
   ngAfterViewInit() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.wordList && !changes.wordList.firstChange) {
+      this.wordList = changes.wordList.currentValue;
+      this.gameGrid = this.BoardService.generateBoard(this.wordList);
+    }
+  }
 
   selectedChanged(tile:ITile): void {
     if (tile.isWord) {
