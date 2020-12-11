@@ -1,17 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { WORD_LIST, WORD_LIST_TREES } from '../constants';
-
+interface IWordList {
+  name: string,
+  list: any[],
+}
 @Component({
   selector: 'app-wordlist',
   templateUrl: './wordlist.component.html',
   styleUrls: ['./wordlist.component.scss']
 })
+
 export class WordlistComponent implements OnInit {
 
-  @Input() wordLists: any[]
-  @Output() notifySelection = new EventEmitter()
-
-
+  @Input() wordLists: IWordList[];
+  @Output() change = new EventEmitter<IWordList>();
 
 
   constructor() { }
@@ -19,9 +20,8 @@ export class WordlistComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // wordListChange(wordList) {
-  //   //this.wordList = wordList.list;
-  //   console.log('test');
-  // }
+  toggle(wordList:IWordList) {
+    this.change.emit(wordList);
+  }
 
 }

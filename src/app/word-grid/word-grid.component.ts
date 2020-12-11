@@ -25,11 +25,7 @@ export class WordGridComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  selectedChanged(tile:ITile): void {
-=======
   selectedChanged(tile: ITile): void {
->>>>>>> 048e85a9f37149cda0d5b96afeeaafb1ae36f4c4
     if (tile.isWord) {
       tile.words.forEach((word) => this.checkForFoundWords(word));
     }

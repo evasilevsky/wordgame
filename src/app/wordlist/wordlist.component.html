@@ -1,5 +1,7 @@
 <p>wordlist works!</p>
 
 <ul class="select-list">
-    <li (click)="wordListChange(item)" *ngFor="let item of wordLists">{{item.name}}</li>
+    <li  *ngFor="let item of wordLists" (click)="toggle(item)">
+    {{item.name}}
+    </li>
 </ul>
