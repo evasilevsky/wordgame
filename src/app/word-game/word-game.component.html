@@ -1,1 +1,2 @@
-<app-word-grid [wordList]=wordList></app-word-grid>
+<app-wordlist [(wordLists)]=wordLists (notifySelection)="wordListChange(wordList)"></app-wordlist>
+<app-word-grid [(wordList)]=wordList></app-word-grid>

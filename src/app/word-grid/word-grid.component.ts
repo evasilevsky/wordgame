@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { BoardService } from '../board.service';
 import { ITile } from './word-grid.models'
 @Component({
-	selector: 'app-word-grid',
-	templateUrl: './word-grid.component.html',
-	styleUrls: ['./word-grid.component.scss']
+  selector: 'app-word-grid',
+  templateUrl: './word-grid.component.html',
+  styleUrls: ['./word-grid.component.scss']
 })
 
 export class WordGridComponent implements OnInit {
@@ -15,10 +15,17 @@ export class WordGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameGrid = this.BoardService.generateBoard(this.wordList);
-  } 
+  }
   ngAfterViewInit() { }
 
-  selectedChanged(tile:ITile): void {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.wordList && !changes.wordList.firstChange) {
+      this.wordList = changes.wordList.currentValue;
+      this.gameGrid = this.BoardService.generateBoard(this.wordList);
+    }
+  }
+
+  selectedChanged(tile: ITile): void {
     if (tile.isWord) {
       tile.words.forEach((word) => this.checkForFoundWords(word));
     }
@@ -31,7 +38,7 @@ export class WordGridComponent implements OnInit {
     }
   }
   getWordTiles(word: string): ITile[] {
-    return this.gameGrid.flatMap(row => row.filter(tile => this.isPartOfWord(tile,word))); 
+    return this.gameGrid.flatMap(row => row.filter(tile => this.isPartOfWord(tile, word)));
   }
   isPartOfWord(tile: ITile, word: string): boolean {
     return tile.isWord && tile.isSelected && tile.words.some(w => w === word);
