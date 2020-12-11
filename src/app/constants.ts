@@ -10,13 +10,13 @@ export const DIRECTIONS: string[] = [
 ]
 export const DIRECTIONS2: any[] = [
   { name: 'hor', reverse: false, active: true },
-  { name: 'hor', reverse: true,  active: true },
+  { name: 'hor', reverse: true, active: true },
   { name: 'ver', reverse: false, active: true },
-  { name: 'ver', reverse: true,  active: true },
+  { name: 'ver', reverse: true, active: true },
   { name: 'dia-l', reverse: false, active: true },
-  { name: 'dia-l', reverse: true,  active: true },
+  { name: 'dia-l', reverse: true, active: true },
   { name: 'dia-r', reverse: false, active: true },
-  { name: 'dia-r', reverse: true,  active: true },
+  { name: 'dia-r', reverse: true, active: true },
 
 ]
 
@@ -36,23 +36,23 @@ export const WORD_LIST: string[] = [
   'Charmander'
 ];
 
-  export const WORD_LIST_TREES: string[] = [
-    "fir",
-    "arbutus",
-    "birch",
-    "pine",
-    "maple",
-    "cherry",
-    "fir",
-    "cedar",
-    "poplar",
-    "oak",
-    "willow",
-    "palm",
-    "apple",
-    "beech",
-    "basswood",
-    "elm"
-  ]
+export const WORD_LIST_TREES: string[] = [
+  "fir",
+  "arbutus",
+  "birch",
+  "pine",
+  "maple",
+  "cherry",
+  "fir",
+  "cedar",
+  "poplar",
+  "oak",
+  "willow",
+  "palm",
+  "apple",
+  "beech",
+  "basswood",
+  "elm"
+]
 
-  export const ALPHABET: string = 'abcdefghijklmnoprstuvwy';
+export const ALPHABET: string = 'abcdefghijklmnoprstuvwy';
