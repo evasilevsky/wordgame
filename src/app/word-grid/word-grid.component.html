@@ -1,14 +1,7 @@
-<!-- <article (click)="selectItem($event)" (keyup)="selectItem($event)" (keyup)="handleKeyFocus($event)" aria-role="grid"
-	class="word-grid" aria-label="game board" [attr.data-grid]="gridSize">
-	<div class="word-grid__row" [style.--grid]="gridSize" aria-role="row" *ngFor="let row of gridData; let i = index"
-		[attr.data-index]="i">
-		<div class="word-grid__item tile" aria-role="gridcell" *ngFor="let letter of row; let j = index"
-			[attr.aria-label]="letter" aria-selected="false" [attr.data-row]="i" [attr.data-index]="j" tabindex="0">
-			<span class="letter">{{letter}}</span>
+<article aria-role="grid" class="grid" aria-label="game board">
+	<div class="grid__row" [style.--grid]="gridSize" aria-role="row" *ngFor="let row of gameGrid; let i = index" [attr.data-index]="i">
+		<div class="grid__item" *ngFor="let tile of row; let j = index" [attr.aria-label]="letter" aria-selected="false" [attr.data-row]="i" [attr.data-index]="j">
+			<app-tile [tile]="tile"></app-tile>
 		</div>
 	</div>
-</article> -->
-<div class="grid__row" *ngFor="let row of gameGrid">
-	<app-tile [tile]="tile" (notifySelection)="selectedChanged(tile)" [class.word]="tile.isWord" class="grid__tile word" *ngFor="let tile of row">
-	</app-tile>
-</div>
+</article> 
