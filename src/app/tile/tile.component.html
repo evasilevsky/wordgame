@@ -1,3 +1,7 @@
-<div class="tile" (click)="isSelectedChange()" [class.word]="tile.isFound" [class.selected]="tile.isSelected" tabindex=0> 
+<div class="tile" 
+  (click)="isSelectedChange()" 
+  [class.word]="tile.isFound" 
+  [class.selected]="tile.isSelected" 
+  tabindex=0> 
   <span class="letter">{{tile?.letter}}</span>
 </div>

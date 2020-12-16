@@ -1,7 +1,12 @@
 <article aria-role="grid" class="grid" aria-label="game board">
 	<div class="grid__row" [style.--grid]="gridSize" aria-role="row" *ngFor="let row of gameGrid; let i = index" [attr.data-index]="i">
-		<div class="grid__item" *ngFor="let tile of row; let j = index" [attr.aria-label]="letter" aria-selected="false" [attr.data-row]="i" [attr.data-index]="j">
-			<app-tile [tile]="tile"></app-tile>
+		<div class="grid__item" 
+			*ngFor="let tile of row; let j = index" 
+			[attr.aria-label]="letter" 
+			aria-selected="false" 
+			[attr.data-row]="i" 
+			[attr.data-index]="j">
+			<app-tile [tile]="tile" (notifySelection)="selectedChanged($event)"></app-tile>
 		</div>
 	</div>
 </article> 
