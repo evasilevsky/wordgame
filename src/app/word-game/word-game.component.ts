@@ -1,21 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WORD_LIST, WORD_LIST_TREES } from '../constants';
+import { IWordListGroups, ThirdPartyService } from '../services/third-party/third-party.service';
 
 
 @Component({
-  selector: 'app-word-game',
-  templateUrl: './word-game.component.html',
-  styleUrls: ['./word-game.component.scss']
+	selector: 'app-word-game',
+	templateUrl: './word-game.component.html',
+	styleUrls: ['./word-game.component.scss']
 })
 
-export class WordGameComponent implements OnInit {
+export class WordGameComponent implements OnInit, OnDestroy {
 
-  wordList = WORD_LIST_TREES;
+	wordList = WORD_LIST_TREES;
 
-  constructor() { }
+	wordListGroups: IWordListGroups;
+	subs: Subscription[] = [];
 
-  ngOnInit(): void {
+	constructor(private readonly thirdPartyService: ThirdPartyService) { }
 
-  }
+	ngOnInit(): void {
+		const sub = this.thirdPartyService.generateWords()
+			.pipe(
+				take(1)
+			)
+			.subscribe(wordListGroups => this.wordListGroups);
+		this.subs.push(sub);
+	}
 
+	ngOnDestroy(): void {
+		this.subs.forEach(sub => sub.unsubscribe())
+	}
 }

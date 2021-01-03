@@ -36,6 +36,7 @@ export class SettingsComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		this.rows.valueChanges.subscribe(rowValue => console.log(rowValue))
 	}
 
 	public get theme() {
