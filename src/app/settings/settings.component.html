@@ -1,0 +1,44 @@
+<form [formGroup]="settingsForm">
+	<div>
+		<label for="theme">
+			Theme
+		</label>
+		<select id="theme" (change)="changeTheme($event)" formControlName="theme">
+			<option *ngFor="let option of options" [value]="option.value">
+				{{option.label}}
+			</option>
+		</select>
+	</div>
+	<div>
+		Dimensions:
+		<label for="rows">
+			Rows
+		</label>
+		<input class="form-control" id="rows" type="number" formControlName="rows" required />
+		<div *ngIf="rows.invalid && (rows.dirty || rows.touched)" class="alert alert-danger">
+			<div *ngIf="rows.errors.required">
+				Rows are required.
+			</div>
+			<div *ngIf="rows.errors.min">
+				Rows must be at least 5 cells tall.
+			</div>
+		</div>
+		<label for="cols">
+			Cols
+		</label>
+		<input class="form-control" id="cols" type="number" formControlName="cols" required />
+		<div *ngIf="cols.invalid && (cols.dirty || cols.touched)" class="alert alert-danger">
+			<div *ngIf="cols.errors.required">
+				Columns are required.
+			</div>
+			<div *ngIf="cols.errors.min">
+				Columns must be at least 5 cells wide.
+			</div>
+		</div>
+		<label for="clues">
+			Give clues?
+		</label>
+		<input class="form-control" id="clues" type="checkbox" formControlName="clues" />
+	</div>
+	<button type="submit" [disabled]="settingsForm.invalid" (click)="submit()">Save</button>
+</form>
