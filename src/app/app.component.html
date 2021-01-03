@@ -1,42 +1,37 @@
-
 <header class="app-header">
-  <div class="logo">
-    <div class="grid__tile--content tile">
-      <span class="letter ">w</span>
-    </div>
-    <div class="grid__tile--content tile">
-      <span class="letter ">o</span>
-    </div>
-    <div class="grid__tile--content tile">
-      <span class="letter ">r</span>
-    </div>
-    <div class="grid__tile--content tile">
-      <span class="letter ">d</span>
-    </div>
-     <div class="grid__tile--content tile tile__selected">
-      <span class="letter ">g</span>
-    </div>
-    <div class="grid__tile--content tile tile__selected">
-      <span class="letter ">a</span>
-    </div>
-    <div class="grid__tile--content tile tile__selected">
-      <span class="letter ">m</span>
-    </div>
-    <div class="grid__tile--content tile tile__selected">
-      <span class="letter ">e</span>
-    </div>
-  </div>
+	<div class="logo">
+		<div class="grid__tile--content tile">
+			<span class="letter ">w</span>
+		</div>
+		<div class="grid__tile--content tile">
+			<span class="letter ">o</span>
+		</div>
+		<div class="grid__tile--content tile">
+			<span class="letter ">r</span>
+		</div>
+		<div class="grid__tile--content tile">
+			<span class="letter ">d</span>
+		</div>
+		<div class="grid__tile--content tile tile__selected">
+			<span class="letter ">g</span>
+		</div>
+		<div class="grid__tile--content tile tile__selected">
+			<span class="letter ">a</span>
+		</div>
+		<div class="grid__tile--content tile tile__selected">
+			<span class="letter ">m</span>
+		</div>
+		<div class="grid__tile--content tile tile__selected">
+			<span class="letter ">e</span>
+		</div>
+	</div>
 </header>
 
-
 <main class="content" role="main">
-  <app-word-game></app-word-game>
+	<router-outlet></router-outlet>
 </main>
-
 <footer class="app-footer">
-  <div class="grid__tile info">
-      <span class="letter">?</span>
-    </div>
+	<div class="grid__tile info">
+		<span class="letter">?</span>
+	</div>
 </footer>
-
-<router-outlet></router-outlet>
